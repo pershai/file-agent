@@ -1,6 +1,8 @@
 import logging
 import yaml
 import sys
+import os
+from dotenv import load_dotenv
 from agent import Agent
 from tools import file_tools
 
@@ -18,8 +20,7 @@ def load_config(config_path: str = "config.yaml") -> dict:
     try:
         with open(config_path, "r") as f:
             config = yaml.safe_load(f)
-            if "model" not in config:
-                raise ValueError("Model configuration missing in config.yaml")
+
             return config
     except FileNotFoundError:
         logger.error(f"Configuration file '{config_path}' not found.")
@@ -30,8 +31,9 @@ def load_config(config_path: str = "config.yaml") -> dict:
 
 def main():
     config = load_config()
-    model_name = config["model"]
-    api_key = config.get("api_key")
+    load_dotenv()
+    model_name = os.getenv("MODEL_NAME")
+    api_key = os.getenv("API_KEY")
     max_turns = config.get("max_turns")
 
     agent = Agent(
