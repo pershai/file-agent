@@ -21,7 +21,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 2.  **Install the required packages:**
     ```bash
-    pip install pyyaml google-generativeai
+    pip install pyyaml google-genai python-dotenv
+    ```
+
+
+### Configuration
+
+1.  Rename a `.env_temp` file in the root directory to `.env`.
+2.  Add your Google API key and Model Name to the `.env` file:
+
+    ```env
+    API_KEY="your-google-api-key"
+    MODEL_NAME="gemini-2.5-pro"
     ```
 
 ## Usage
@@ -30,3 +41,5 @@ To start the AI agent, run the [main.py](cci:7://file:///D:/projects/python/ai-b
 
 ```bash
 python main.py
+
+##
